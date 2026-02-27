@@ -55,7 +55,7 @@ sudo apt install curl jq python3
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/yourusername/DCmd_C0deBot.git
+git clone https://github.com/andrua-joshua/dCmd_CodeB0t.git
 cd DCmd_C0deBot
 ```
 
