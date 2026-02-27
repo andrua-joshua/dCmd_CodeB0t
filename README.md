@@ -307,3 +307,143 @@ chmod +x ollamaCodeBot.sh
 | Speed | ⚡ Very fast | depends on hardware |
 | Best for | General use | Red team / offline / security |
 | Cost | API usage cost | 100% Free |
+
+---
+
+### `ollamaCmdBot.sh` — Detailed Usage
+
+`ollamaCmdBot.sh` is a **conversational AI chatbot** powered by a local Ollama model that runs entirely offline in your terminal.
+
+- **Default Model:** `mistral`
+- **API endpoint:** `http://localhost:11434/api/chat`
+- **No API key required**
+- **Auto-starts Ollama** if it is not already running
+
+#### Usage:
+```bash
+./ollamaCmdBot.sh
+```
+
+#### Example Session:
+```
+╔════════════════════════════════════╗
+║       🦙 Ollama ChatBot            ║
+║  Type 'exit' or 'quit' to leave    ║
+║  Type 'clear' to reset the chat    ║
+║  Type 'model' to switch models     ║
+╚════════════════════════════════════╝
+
+Using model: mistral
+
+You: what is a reverse shell?
+thinking...
+
+Ollama (mistral):
+A reverse shell is a type of shell session where the target machine
+initiates the connection back to the attacker's machine...
+
+You: give me an example in python
+thinking...
+
+Ollama (mistral):
+import socket, subprocess, os
+s = socket.socket(...)
+```
+
+---
+
+### `ollamaCodeBot.sh` — Detailed Usage
+
+`ollamaCodeBot.sh` is an **offline coding agent** with a built-in red team system prompt. It reads your project files for context and helps you write, debug and analyze code — all without internet.
+
+- **Default Model:** `codellama`
+- **API endpoint:** `http://localhost:11434/api/chat`
+- **Max context files:** 20
+- **Usage log:** `~/.ollamacodebot_usage.log`
+- **Red team system prompt** built-in
+- **No API key required**
+
+#### Usage:
+```bash
+# Run in current directory
+./ollamaCodeBot.sh
+
+# Run with a specific project folder
+./ollamaCodeBot.sh /path/to/your/project
+
+# Example with recon folder
+./ollamaCodeBot.sh ~/pentest/target-recon
+```
+
+#### Example Session:
+```
+╔══════════════════════════════════════╗
+║     🦙 Ollama Coding Agent           ║
+║  Type 'exit' or 'quit' to leave      ║
+║  Type 'clear' to reset the chat      ║
+║  Type 'model' to switch models       ║
+║  Type 'context' to reload files      ║
+╚══════════════════════════════════════╝
+
+Model:   codellama
+Context: /Users/you/pentest/target-recon
+
+Loading context from: /Users/you/pentest/target-recon
+Loaded 5 file(s) as context
+
+You: analyze the nmap scan and suggest attack vectors
+thinking...
+
+Ollama (codellama):
+Based on the nmap results, I can see port 22 (SSH), 80 (HTTP) and
+445 (SMB) are open. Here are the potential attack vectors...
+
+You: write a python script to enumerate smb shares
+thinking...
+
+Ollama (codellama):
+import subprocess
+def enumerate_smb(target):
+result = subprocess.run(['smbclient', '-L', target]...
+```
+
+#### Features:
+- 📂 **Context-aware** — reads up to 20 files from your project/recon folder
+- 🔴 **Red team prompt** — tuned for pentesting, recon and exploitation tasks
+- 🔄 **Hot-swap models** — switch between models mid-session with `model`
+- 🔁 **Reload context** — update project files mid-session with `context`
+- 📊 **Usage logging** — logs all sessions to `~/.ollamacodebot_usage.log`
+- ⏱️ **Session timer** — shows total session duration on exit
+- 🌐 **Auto-starts Ollama** — no need to manually run `ollama serve`
+
+---
+
+### 🛠️ Ollama Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| `ollama: command not found` | Install: `brew install ollama` or `curl -fsSL https://ollama.com/install.sh \| sh` |
+| `Error: No response from Ollama` | Run `ollama serve` in a separate terminal |
+| Model not found | Run `ollama pull mistral` or `ollama pull codellama` |
+| Slow responses | Normal for large models — try `mistral` for faster replies |
+| `curl: command not found` | Install: `brew install curl` or `sudo apt install curl` |
+| `jq: command not found` | Install: `brew install jq` or `sudo apt install jq` |
+| Context not loading | Check that the folder path exists and contains readable files |
+
+---
+
+### 🔴 Red Team Tips for `ollamaCodeBot.sh`
+
+```bash
+# Pipe nmap output as context
+mkdir /tmp/recon && nmap -sV target.com > /tmp/recon/nmap.txt
+./ollamaCodeBot.sh /tmp/recon
+
+# Use with a CTF challenge folder
+./ollamaCodeBot.sh ~/ctf/challenge-1
+
+# Switch to a more powerful model for complex tasks
+# (type 'model' inside the bot and enter 'llama3')
+ollama pull llama3
+./ollamaCodeBot.sh
+```
