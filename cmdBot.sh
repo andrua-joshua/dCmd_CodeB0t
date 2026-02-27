@@ -103,7 +103,7 @@ send_message() {
 print_banner() {
     echo -e "${CYAN}${BOLD}"
     echo "  ╔════════════════════════════════════╗"
-    echo "  ║        Claude CLI Chatbot          ║"
+    echo "  ║        >>>>DCMM ChatBot            ║"
     echo "  ║  Type 'exit' or 'quit' to leave    ║"
     echo "  ║  Type 'clear' to reset the chat    ║"
     echo "  ╚════════════════════════════════════╝"
