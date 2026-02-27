@@ -212,3 +212,98 @@ This project is licensed under the MIT License.
 ## 👤 Author
 
 **DCmd_C0deBot** — Built with ❤️ using the [Anthropic Claude API](https://www.anthropic.com)
+
+---
+
+## 🦙 Ollama (Local AI) — Offline Versions
+
+Want to run the bots **completely offline** with no API key? Use the Ollama-powered versions!
+
+### Why Ollama?
+- ✅ 100% offline — no internet required
+- ✅ No API key needed
+- ✅ No safety filters
+- ✅ Free to use
+- ✅ Great for red team / security use
+
+---
+
+### Step 1 — Install Ollama
+
+**macOS:**
+```bash
+brew install ollama
+```
+
+**Linux:**
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+---
+
+### Step 2 — Pull a Model
+
+```bash
+ollama pull mistral       # fast, great for chat
+ollama pull codellama     # best for coding & security
+ollama pull llama3        # most capable general model
+
+# See all installed models
+ollama list
+```
+
+---
+
+### Step 3 — Start Ollama Server
+
+```bash
+ollama serve
+```
+> Runs at `http://localhost:11434` — no internet needed!
+
+---
+
+### Step 4 — Run the Ollama Bots
+
+#### `ollamaCmdBot.sh` — Ollama CLI Chatbot
+```bash
+chmod +x ollamaCmdBot.sh
+./ollamaCmdBot.sh
+```
+
+#### `ollamaCodeBot.sh` — Ollama Coding Agent
+```bash
+chmod +x ollamaCodeBot.sh
+
+# Run in current directory
+./ollamaCodeBot.sh
+
+# Run with a specific project folder
+./ollamaCodeBot.sh /path/to/your/project
+```
+
+---
+
+### Ollama Bot Commands
+
+| Command | Description |
+|---------|-------------|
+| `exit` / `quit` / `bye` | Exit the bot |
+| `clear` / `reset` | Clear conversation history |
+| `model` | Switch between installed models |
+| `context` | Reload project files (ollamaCodeBot only) |
+| `help` | Show available commands |
+
+---
+
+### Claude vs Ollama Comparison
+
+| Feature | cmdBot / codeBot (Claude) | ollamaCmdBot / ollamaCodeBot (Ollama) |
+|---------|--------------------------|--------------------------------------|
+| Internet required | ✅ Yes | ❌ No |
+| API Key required | ✅ Yes | ❌ No |
+| Safety filters | ✅ Yes | ❌ No |
+| Speed | ⚡ Very fast | depends on hardware |
+| Best for | General use | Red team / offline / security |
+| Cost | API usage cost | 100% Free |
