@@ -447,3 +447,108 @@ mkdir /tmp/recon && nmap -sV target.com > /tmp/recon/nmap.txt
 ollama pull llama3
 ./ollamaCodeBot.sh
 ```
+
+---
+
+## 🦙 Ollama Model Sizes & System Requirements
+
+### Models Used in the Bots
+
+| Model | Size | RAM Needed | Best For |
+|-------|------|------------|----------|
+| `mistral` (ollamaCmdBot) | ~4.1 GB | 8GB RAM | Fast chat |
+| `codellama` (ollamaCodeBot) | ~3.8 GB | 8GB RAM | Code generation |
+
+---
+
+### All Popular Models Comparison
+
+| Model | Size | RAM | Speed | Quality |
+|-------|------|-----|-------|---------|
+| `mistral` | 4.1 GB | 8GB | ⚡⚡⚡ Fast | ⭐⭐⭐⭐ |
+| `codellama` | 3.8 GB | 8GB | ⚡⚡⚡ Fast | ⭐⭐⭐⭐ |
+| `llama3` | 4.7 GB | 8GB | ⚡⚡ Medium | ⭐⭐⭐⭐⭐ |
+| `llama3:70b` | 40 GB | 64GB | 🐢 Slow | ⭐⭐⭐⭐⭐ |
+| `phi3` | 2.3 GB | 4GB | ⚡⚡⚡⚡ Very Fast | ⭐⭐⭐ |
+| `gemma` | 5.0 GB | 8GB | ⚡⚡ Medium | ⭐⭐⭐⭐ |
+| `tinyllama` | 637 MB | 4GB | ⚡⚡⚡⚡⚡ Fastest | ⭐⭐ |
+
+---
+
+### 💻 Minimum System Requirements
+
+#### To run `mistral` or `codellama`:
+```
+RAM:      8GB minimum (16GB recommended)
+Storage:  At least 5GB free disk space
+CPU:      Any modern CPU (2018+)
+GPU:      Optional but speeds things up greatly
+```
+
+#### To run with GPU acceleration:
+```
+NVIDIA:   CUDA supported GPU (GTX 1060+ / RTX series)
+Apple:    M1/M2/M3 Mac (Metal acceleration built-in)
+AMD:      ROCm supported GPU
+```
+
+---
+
+### 🏃 Performance by Hardware
+
+| Hardware | Speed |
+|----------|-------|
+| Apple M1/M2/M3 | ⚡⚡⚡⚡⚡ Excellent |
+| NVIDIA RTX GPU | ⚡⚡⚡⚡⚡ Excellent |
+| 16GB RAM CPU only | ⚡⚡⚡ Good |
+| 8GB RAM CPU only | ⚡⚡ Acceptable |
+| 4GB RAM | ⚠️ Use `tinyllama` or `phi3` only |
+
+---
+
+### 💡 Recommendation by Your Machine
+
+#### Low-end machine (4-8GB RAM):
+```bash
+ollama pull phi3       # 2.3GB — lightweight & decent
+ollama pull tinyllama  # 637MB — smallest possible
+```
+
+#### Mid-range machine (8-16GB RAM):
+```bash
+ollama pull mistral    # 4.1GB — best balance
+ollama pull codellama  # 3.8GB — best for coding
+```
+
+#### High-end machine (32GB+ RAM or good GPU):
+```bash
+ollama pull llama3        # 4.7GB — most capable
+ollama pull codellama:34b # 19GB — best coding model
+```
+
+---
+
+### 📶 Download Time Estimate
+
+| Connection | `mistral` (4.1GB) | `codellama` (3.8GB) |
+|------------|-------------------|---------------------|
+| 10 Mbps | ~55 mins | ~51 mins |
+| 50 Mbps | ~11 mins | ~10 mins |
+| 100 Mbps | ~6 mins | ~5 mins |
+| 1 Gbps | ~35 secs | ~30 secs |
+
+---
+
+### 🔧 Changing the Default Model
+
+If storage or RAM is a concern, you can change the default model in the scripts:
+
+```bash
+# In ollamaCmdBot.sh — change line 10
+MODEL="phi3"
+
+# In ollamaCodeBot.sh — change line 10
+MODEL="phi3"
+```
+
+> 💡 `phi3` is only **2.3GB**, runs on 4GB RAM and is still very capable for both chat and coding tasks!
